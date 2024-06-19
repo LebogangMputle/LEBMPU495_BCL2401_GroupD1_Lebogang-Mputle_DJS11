@@ -1,6 +1,11 @@
+// import React from 'react';
 
-export default function footer () {
-    return (
-        <footer>2024 © copyright</footer>
-    )
-}
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <p>&copy; 2024</p>
+    </footer>
+  );
+};
+
+export default Footer;

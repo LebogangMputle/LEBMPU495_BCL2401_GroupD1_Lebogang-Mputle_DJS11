@@ -1,37 +1,29 @@
-// import React from "react";
-//import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
-import Library from "./Pages/Library";
-import Favourites from "./Pages/Favourites";
-// import Vans from "./Pages/Van/Vans";
-// import VanDetail from "./Pages/Van/VanDetail";
-// import Login from "./Pages/Login";
-import NotFound from "./Pages/NotFound";
-import Layout from "./components/Layout";
-// import AuthRequired from "./components/AuthRequired";
+// import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './Pages/Home';
+import Library from './Pages/Library';
+import Favourites from './Pages/Favourites';
+import Search from './Pages/Search';
 
-
-import "./server";
-
-export default function App() {
+function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="library" element={<Library />} />
-          <Route path="favourites" element={<Favourites />} />
-          {/* <Route path="vans" element={<Vans />} />
-          <Route path="vans/:id" element={<VanDetail />} />
-          <Route path="login" element={<Login />} /> */}
-
-          {/* <Route element={<AuthRequired />}>
-              </Route> */}
-            </Route>
-
-          <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <div className="content">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/library" component={Library} />
+            <Route path="/favourites" component={Favourites} />
+            <Route path="/search" component={Search} />
+          </Switch>
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
+
+export default App;

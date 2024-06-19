@@ -1,12 +1,13 @@
-// import React from "react"
-import { Link } from "react-router-dom"
+// import React from 'react';
 
-export default function Home() {
-    return (
-        <div className="home-container">
-            <h1>The Home page.</h1>
-            <p>Add Music list</p>
-            <Link to="vans">Find your Podcast</Link>
-        </div>
-    )
-}
+const Home = () => {
+  return (
+    <div className="home">
+      <h2>The Home page.</h2>
+      <p>Add Music list</p>
+      <button className="find-podcast-btn">Find your Podcast</button>
+    </div>
+  );
+};
+
+export default Home;
