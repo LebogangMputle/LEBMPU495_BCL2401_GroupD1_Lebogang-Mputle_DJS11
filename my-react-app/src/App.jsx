@@ -5,6 +5,7 @@ import Layout from './components/Layout';
 // import Footer from './components/Footer';
 import Home from './Pages/Home';
 import Library from './Pages/Library';
+import Seasons from './Pages/Seasons';
 import  Favourites  from './Pages/Favourites';
 import  Search  from './Pages/Search';
 import './index.css'
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="library" element={<Library />} />
+          <Route path="seasons/:id" element={<Seasons />} />
           <Route path="favourites" element={<Favourites />} />
           <Route path="search" element={<Search />} />
           {/* <Route path="*" element={<NotFound />} /> */}

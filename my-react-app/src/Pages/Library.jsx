@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Library.css';
 
 const Library = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc'); // 'asc' for ascending, 'desc' for descending
+  
 
   useEffect(() => {
     fetch('https://podcast-api.netlify.app/shows')
@@ -36,12 +38,17 @@ const Library = () => {
       </div>
       <div className="podcasts">
         {podcasts.map(podcast => (
-          <div key={podcast.id} className="podcast-card">
+          
+          
+          <Link key={podcast.id} to={`/seasons/${podcast.id}`} className="podcast-card">
             <img src={podcast.image} alt={podcast.title} className="podcast-image" />
             <div className="podcast-info">
               <h3>{podcast.title}</h3>
             </div>
-          </div>
+          </Link>
+          
+          
+          
         ))}
       </div>
     </div>
