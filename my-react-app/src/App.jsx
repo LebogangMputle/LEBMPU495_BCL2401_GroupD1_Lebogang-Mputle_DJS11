@@ -4,7 +4,7 @@ import { BrowserRouter as Router ,Route , Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 // import Footer from './components/Footer';
 import Home from './Pages/Home';
-import Library from './Pages/Library';
+import Podcasts from './Pages/Podcasts/Podcasts';
 import Seasons from './Pages/Seasons';
 import  Favourites  from './Pages/Favourites';
 import  Search  from './Pages/Search';
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="library" element={<Library />} />
+          <Route path="podcasts" element={<Podcasts />} />
           <Route path="seasons/:id" element={<Seasons />} />
           <Route path="favourites" element={<Favourites />} />
           <Route path="search" element={<Search />} />

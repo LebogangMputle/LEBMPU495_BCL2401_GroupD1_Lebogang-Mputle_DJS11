@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Library.css';
+import './Podcasts.css';
 
-const Library = () => {
+const Podcasts = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc'); // 'asc' for ascending, 'desc' for descending
   
@@ -30,8 +30,8 @@ const Library = () => {
   };
 
   return (
-    <div className="library">
-      <h2>Library</h2>
+    <div className="podcasts">
+      <h2>Podcasts</h2>
       <div className="sort-buttons">
         <button onClick={() => sortPodcasts('asc')}>Sort A-Z</button>
         <button onClick={() => sortPodcasts('desc')}>Sort Z-A</button>
@@ -55,4 +55,4 @@ const Library = () => {
   );
 };
 
-export default Library;
+export default Podcasts;

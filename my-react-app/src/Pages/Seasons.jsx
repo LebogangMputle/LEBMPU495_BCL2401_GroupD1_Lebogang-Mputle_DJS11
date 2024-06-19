@@ -25,6 +25,7 @@ const Seasons = () => {
                 <div className="podcast-details">
                     <h1>{podcasts.title}</h1>
                     <img src={podcasts.image} alt={podcasts.title} className="podcast-image" />
+                    <p className="podcast-description">{podcasts.description}</p>
                 </div>
             )}
         </>

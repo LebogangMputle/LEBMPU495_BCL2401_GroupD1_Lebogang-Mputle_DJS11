@@ -7,7 +7,7 @@ const Navbar = () => {
       <h1>Podcast App</h1>
       <div className="links">
         <Link to="/">Home</Link>
-        <Link to="/library">Library</Link>
+        <Link to="/podcasts">Podcasts</Link>
         <Link to="/favourites">Favourites</Link>
         <Link to="/search">Search</Link>
       </div>
