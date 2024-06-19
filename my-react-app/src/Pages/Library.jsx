@@ -1,4 +1,5 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import './Library.css'; // Ensure you have a Library.css file for styling
 
 const Library = () => {
   const [podcasts, setPodcasts] = useState([]);
@@ -13,15 +14,15 @@ const Library = () => {
   return (
     <div className="library">
       <h2>Library</h2>
-      <div>
-        <h3>Podcasts</h3>
-        <ul>
-          {podcasts.map(podcast => (
-            <li key={podcast.id}>
-              {podcast.title}
-            </li>
-          ))}
-        </ul>
+      <div className="podcasts">
+        {podcasts.map(podcast => (
+          <div key={podcast.id} className="podcast-card">
+            <img src={podcast.image} alt={podcast.title} className="podcast-image" />
+            <div className="podcast-info">
+              <h3>{podcast.title}</h3>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
