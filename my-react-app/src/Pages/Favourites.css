@@ -1,0 +1,49 @@
+/* src/Pages/Favourites.css */
+.favourites {
+    padding: 20px;
+  }
+  
+  .favourites-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .favourite-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .favourite-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .favourite-info {
+    padding: 10px;
+  }
+  
+  .favourite-info button {
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  .favourite-info button:hover {
+    background-color: #e64a19;
+  }
+  
+  .favourite-link {
+    display: block;
+    margin-top: 10px;
+    color: #2196f3;
+    text-decoration: none;
+  }
+  

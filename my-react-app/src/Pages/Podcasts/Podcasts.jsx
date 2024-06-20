@@ -61,6 +61,18 @@ const Podcasts = () => {
     }
   };
 
+  const addToFavourites = (podcast) => {
+    const savedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
+    const isAlreadyFavourite = savedFavourites.some(fav => fav.id === podcast.id);
+
+    if (!isAlreadyFavourite) {
+      const updatedFavourites = [...savedFavourites, podcast];
+      localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
+    } else {
+      alert('Podcast is already in favourites');
+    }
+  };
+
   return (
     <div className="podcasts">
       <h2>Podcasts</h2>
@@ -88,12 +100,14 @@ const Podcasts = () => {
       <div className="podcasts-list">
         {podcasts.length > 0 ? (
           podcasts.map(podcast => (
-            <Link key={podcast.id} to={`/seasons/${podcast.id}`} className="podcast-card">
+            <div key={podcast.id} className="podcast-card">
               <img src={podcast.image} alt={podcast.title} className="podcast-image" />
               <div className="podcast-info">
                 <h3>{podcast.title}</h3>
+                <button onClick={() => addToFavourites(podcast)}>Add to Favourites</button>
+                <Link to={`/seasons/${podcast.id}`}>View Seasons</Link>
               </div>
-            </Link>
+            </div>
           ))
         ) : (
           <p>No podcasts available</p>
