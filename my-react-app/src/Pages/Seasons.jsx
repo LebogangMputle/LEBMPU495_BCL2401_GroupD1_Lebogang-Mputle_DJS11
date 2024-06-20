@@ -2,6 +2,7 @@
 
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import './Seasons.css';
 
 const Seasons = () => {
     const [podcasts, setPodcasts] = useState(null);
@@ -11,12 +12,13 @@ const Seasons = () => {
     useEffect(() => {
         fetch(`https://podcast-api.netlify.app/id/${id}`)
           .then(response => response.json())
-          .then(data => { setPodcasts(data) 
-                          setLoading(false)
+          .then(data =>
+             { setPodcasts(data) 
+               setLoading(false)
             })
           .catch(error => console.error('Error fetching podcasts:', error));
       }, [id])
-      console.log(podcasts)
+
       return (
         <>
             {loading ? (

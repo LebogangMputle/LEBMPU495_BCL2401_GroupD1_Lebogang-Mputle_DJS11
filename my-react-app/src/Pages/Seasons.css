@@ -1,0 +1,33 @@
+.podcast-details {
+    text-align: center;
+}
+
+.podcast-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.podcast-description {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.seasons {
+    margin-top: 20px;
+}
+
+.season {
+    margin-bottom: 20px;
+}
+
+.episodes {
+    margin-left: 20px;
+}
+
+.episode {
+    margin-bottom: 10px;
+}
