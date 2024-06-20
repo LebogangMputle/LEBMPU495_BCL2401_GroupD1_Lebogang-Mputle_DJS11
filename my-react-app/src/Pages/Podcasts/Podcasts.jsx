@@ -19,6 +19,7 @@ const Podcasts = () => {
   const [allPodcasts, setAllPodcasts] = useState([]); // To store all podcasts initially
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetchPodcasts();
@@ -49,16 +50,30 @@ const Podcasts = () => {
     filterPodcastsByGenre(event.target.value);
   };
 
-  const filterPodcastsByGenre = (genreId) => {
-    if (genreId === '') {
-      setPodcasts(allPodcasts); // Show all podcasts if no genre selected
-    } else {
-      const filteredPodcasts = allPodcasts.filter(podcast =>
+
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+    filterPodcastsByGenre(selectedGenre, event.target.value);
+  };
+
+  const filterPodcastsByGenre = (genreId, query = '') => {
+    let filteredData = allPodcasts;
+
+    if (genreId !== '') {
+      filteredData = filteredData.filter(podcast =>
         podcast.genres && podcast.genres.includes(parseInt(genreId))
       );
-      const sortedData = filteredPodcasts.sort((a, b) => a.title.localeCompare(b.title));
-      setPodcasts(sortedData);
     }
+
+    if (query.trim() !== '') {
+      const lowercaseQuery = query.trim().toLowerCase();
+      filteredData = filteredData.filter(podcast =>
+        podcast.title.toLowerCase().includes(lowercaseQuery)
+      );
+    }
+
+    const sortedData = filteredData.sort((a, b) => a.title.localeCompare(b.title));
+    setPodcasts(sortedData);
   };
 
   const addToFavourites = (podcast) => {
@@ -96,18 +111,36 @@ const Podcasts = () => {
             </select>
           </div>
         )}
+
+        <div className="search">
+          <input
+            type="text"
+            placeholder="Search podcasts..."
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+          />
+        </div>
       </div>
+
+        
+
       <div className="podcasts-list">
         {podcasts.length > 0 ? (
           podcasts.map(podcast => (
-            <div key={podcast.id} className="podcast-card">
-              <img src={podcast.image} alt={podcast.title} className="podcast-image" />
-              <div className="podcast-info">
-                <h3>{podcast.title}</h3>
-                <button onClick={() => addToFavourites(podcast)}>Add to Favourites</button>
-                <Link to={`/seasons/${podcast.id}`}>View Seasons</Link>
+            <Link key={podcast.id} to={`/seasons/${podcast.id}`} className="podcast-card">
+              <div>
+                <img src={podcast.image} alt={podcast.title} className="podcast-image" />
+                <div className="podcast-info">
+                  <h3>{podcast.title}</h3>
+                  <button onClick={(e) => {
+                    e.preventDefault();
+                    addToFavourites(podcast);
+                  }}>
+                    Add to Favourites
+                  </button>
+                </div>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <p>No podcasts available</p>
