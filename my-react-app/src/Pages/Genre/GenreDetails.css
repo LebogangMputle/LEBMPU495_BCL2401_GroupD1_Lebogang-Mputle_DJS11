@@ -1,0 +1,30 @@
+/* src/Pages/GenreDetails.css */
+.genre-details {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.podcasts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.podcast-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.podcast-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.podcast-info {
+    margin-top: 10px;
+}
