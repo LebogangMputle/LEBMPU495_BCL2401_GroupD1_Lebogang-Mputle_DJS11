@@ -1,49 +1,134 @@
-/* src/Pages/Seasons.css */
+/* src/Seasons.css */
 .podcast-details {
-    text-align: center;
-}
-
-.podcast-image {
-    max-width: 50%;
+    padding: 20px;
+  }
+  
+  .podcast-image {
+    width: 200px;
     height: auto;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-
-.podcast-description {
-    margin-top: 20px;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #555;
-}
-
-.seasons {
-    margin-top: 20px;
-}
-
-.season {
-    margin-bottom: 20px;
-}
-
-.episodes {
-    margin-left: 20px;
-}
-
-.episode {
+    border-radius: 8px;
     margin-bottom: 10px;
-}
-
-.seasons-button {
-    margin-top: 20px;
+  }
+  
+  .podcast-description {
+    margin-bottom: 20px;
+  }
+  
+  .seasons-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-}
-
-.seasons-button:hover {
+    transition: background-color 0.3s ease;
+  }
+  
+  .seasons-button.active {
+    background-color: #dc3545; /* Change color for active state */
+  }
+  
+  .seasons-button:hover {
     background-color: #0056b3;
-}
+  }
+  
+  .seasons {
+    margin-top: 20px;
+  }
+  
+  .season {
+    margin-bottom: 20px;
+  }
+  
+  .episode {
+    margin-bottom: 15px;
+  }
+  
+  .audio-player {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .audio-player audio {
+    width: 100%;
+    height: 40px; /* Adjust height as needed */
+    outline: none;
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  
+  .audio-player audio::-webkit-media-controls-panel {
+    display: none; /* Hide default controls in WebKit */
+  }
+  
+  .audio-player audio::controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: none;
+    font-family: Arial, sans-serif;
+  }
+  
+  .audio-player audio::controls button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .audio-player audio::controls button:focus {
+    outline: none;
+  }
+  
+  .audio-player audio::controls button:hover {
+    color: #333;
+  }
+  
+  .audio-player audio::controls button.play-pause {
+    margin-right: 8px;
+  }
+  
+  .audio-player audio::controls button.volume {
+    margin-left: 8px;
+  }
+  
+  .audio-player audio::controls button.time-display {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .audio-player audio::controls button.volume-range {
+    width: 80px;
+  }
+  
+  .audio-player audio::controls button.volume-range input[type="range"] {
+    width: 100%;
+  }
+  
+  .audio-player audio::controls button.volume-range input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background-color: #333;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .audio-player audio::controls button.volume-range input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background-color: #333;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
