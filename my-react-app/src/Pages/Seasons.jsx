@@ -32,6 +32,9 @@ const Seasons = () => {
                     <h1>{podcast.title}</h1>
                     <img src={podcast.image} alt={podcast.title} className="podcast-image" />
                     <p className="podcast-description">{podcast.description}</p>
+                    
+                        
+                    
                     <button onClick={handleSeasonsClick} className={`seasons-button ${showSeasons ? 'active' : ''}`}>
                         {showSeasons ? 'Hide Seasons' : 'View Seasons'}
                     </button>

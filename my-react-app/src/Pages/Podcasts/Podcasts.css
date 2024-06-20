@@ -64,4 +64,47 @@
     margin: 0;
     text-align: center;
   }
+
+  .podcasts {
+    padding: 20px;
+  }
+  
+  .filter-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .sort-buttons button, .genre-filter select {
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .podcasts-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .podcast-card {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: black;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .podcast-image {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  .podcast-info {
+    margin-top: 10px;
+  }
+  
   
