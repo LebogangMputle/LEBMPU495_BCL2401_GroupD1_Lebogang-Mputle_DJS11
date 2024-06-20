@@ -6,7 +6,7 @@ import './Seasons.css';
 const Seasons = () => {
     const [podcast, setPodcast] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [showSeasons, setShowSeasons] = useState(false); // State to toggle seasons visibility
+    const [seasonsVisibility, setSeasonsVisibility] = useState({}); // State to manage visibility of each season
     const { id } = useParams();
 
     useEffect(() => {
@@ -15,12 +15,21 @@ const Seasons = () => {
           .then(data => { 
                 setPodcast(data); 
                 setLoading(false);
+                // Initialize seasonsVisibility state based on the number of seasons
+                const initialVisibility = {};
+                data.seasons.forEach(season => {
+                    initialVisibility[season.seasonNumber] = false; // Initially hide all seasons
+                });
+                setSeasonsVisibility(initialVisibility);
             })
           .catch(error => console.error('Error fetching podcasts:', error));
     }, [id]);
 
-    const handleSeasonsClick = () => {
-        setShowSeasons(prev => !prev); // Toggle showSeasons between true and false
+    const toggleSeason = (seasonNumber) => {
+        setSeasonsVisibility(prev => ({
+            ...prev,
+            [seasonNumber]: !prev[seasonNumber] // Toggle the visibility of the clicked season
+        }));
     };
 
     return (
@@ -33,34 +42,29 @@ const Seasons = () => {
                     <img src={podcast.image} alt={podcast.title} className="podcast-image" />
                     <p className="podcast-description">{podcast.description}</p>
                     
-                        
-                    
-                    <button onClick={handleSeasonsClick} className={`seasons-button ${showSeasons ? 'active' : ''}`}>
-                        {showSeasons ? 'Hide Seasons' : 'View Seasons'}
-                    </button>
-                    {showSeasons && (
-                        <div className="seasons">
-                            {podcast.seasons.map(season => (
-                                <div key={season.seasonNumber} className="season">
-                                    <h2>{season.title}</h2>
-                                    <div className="episodes">
-                                        {season.episodes.map(episode => (
-                                            <div key={episode.title} className="episode">
-                                                <h3>
-                                                    <audio controls className="audio-player">
-                                                        <source src={episode.file} type="audio/mpeg" />
-                                                        Your browser does not support the audio element.
-                                                    </audio>
-                                                    Episode {episode.title}
-                                                </h3>
-                                                <p>{episode.description}</p>
-                                            </div>
-                                        ))}
-                                    </div>
+                    {podcast.seasons.map(season => (
+                        <div key={season.seasonNumber} className="season">
+                            <h2 onClick={() => toggleSeason(season.seasonNumber)} className="season-title">
+                                {season.title}
+                            </h2>
+                            {seasonsVisibility[season.seasonNumber] && (
+                                <div className="episodes">
+                                    {season.episodes.map(episode => (
+                                        <div key={episode.title} className="episode">
+                                            <h3>
+                                                <audio controls className="audio-player">
+                                                    <source src={episode.file} type="audio/mpeg" />
+                                                    Your browser does not support the audio element.
+                                                </audio>
+                                                 {episode.title}
+                                            </h3>
+                                            <p>{episode.description}</p>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
+                            )}
                         </div>
-                    )}
+                    ))}
                 </div>
             )}
         </>
