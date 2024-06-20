@@ -30,7 +30,12 @@ const Podcasts = () => {
     fetch(`https://podcast-api.netlify.app/shows`)
       .then(response => response.json())
       .then(data => {
-        const sortedData = data.sort((a, b) => a.title.localeCompare(b.title));
+        const formattedData = data.map(podcast => ({
+          ...podcast,
+          genres: podcast.genres.map(genres => genreMapping[genres]).join(', '), // Map genre IDs to titles
+          updated: formatReadableDate(podcast.updated) // Format the date here
+        }));
+        const sortedData = formattedData.sort((a, b) => a.title.localeCompare(b.title));
         setPodcasts(sortedData);
         setAllPodcasts(sortedData); // Store all podcasts
       })
@@ -49,7 +54,6 @@ const Podcasts = () => {
     setSelectedGenre(event.target.value);
     filterPodcastsByGenre(event.target.value);
   };
-
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
@@ -88,6 +92,12 @@ const Podcasts = () => {
     }
   };
 
+  // Function to format date into human-readable format
+  const formatReadableDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  };
+
   return (
     <div className="podcasts">
       <h2>Podcasts</h2>
@@ -122,8 +132,6 @@ const Podcasts = () => {
         </div>
       </div>
 
-        
-
       <div className="podcasts-list">
         {podcasts.length > 0 ? (
           podcasts.map(podcast => (
@@ -132,6 +140,7 @@ const Podcasts = () => {
                 <img src={podcast.image} alt={podcast.title} className="podcast-image" />
                 <div className="podcast-info">
                   <h3>{podcast.title}</h3>
+                  <p className="podcast-seasons">Genres: {podcast.genres}</p>
                   <p className="podcast-seasons">Seasons: {podcast.seasons}</p>
                   <p className="podcast-seasons">Last Updated: {podcast.updated}</p>
                   <button onClick={(e) => {

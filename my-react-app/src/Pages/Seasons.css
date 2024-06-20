@@ -1,236 +1,261 @@
 /* src/Seasons.css */
+
+/* Previous CSS */
+
 .podcast-details {
-    padding: 20px;
-  }
-  
-  .podcast-image {
-    width: 200px;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .podcast-description {
-    margin-bottom: 20px;
-  }
-  
-  .seasons-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .seasons-button.active {
-    background-color: #dc3545; /* Change color for active state */
-  }
-  
-  .seasons-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .seasons {
-    margin-top: 20px;
-  }
-  
-  .season {
-    margin-bottom: 20px;
-  }
-  
-  .episode {
-    margin-bottom: 15px;
-  }
-  
-  .audio-player {
-    width: 100%;
-    margin-top: 10px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .audio-player audio {
-    width: 100%;
-    height: 40px; /* Adjust height as needed */
-    outline: none;
-    background-color: #f0f0f0;
-    padding: 8px;
-    border-radius: 8px;
-  }
-  
-  .audio-player audio::-webkit-media-controls-panel {
-    display: none; /* Hide default controls in WebKit */
-  }
-  
-  .audio-player audio::controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    padding: 8px;
-    box-shadow: none;
-    font-family: Arial, sans-serif;
-  }
-  
-  .audio-player audio::controls button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-  }
-  
-  .audio-player audio::controls button:focus {
-    outline: none;
-  }
-  
-  .audio-player audio::controls button:hover {
-    color: #333;
-  }
-  
-  .audio-player audio::controls button.play-pause {
-    margin-right: 8px;
-  }
-  
-  .audio-player audio::controls button.volume {
-    margin-left: 8px;
-  }
-  
-  .audio-player audio::controls button.time-display {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .audio-player audio::controls button.volume-range {
-    width: 80px;
-  }
-  
-  .audio-player audio::controls button.volume-range input[type="range"] {
-    width: 100%;
-  }
-  
-  .audio-player audio::controls button.volume-range input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    background-color: #333;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .audio-player audio::controls button.volume-range input[type="range"]::-moz-range-thumb {
-    width: 12px;
-    height: 12px;
-    background-color: #333;
-    border-radius: 50%;
-    cursor: pointer;
+  padding: 20px;
+}
+
+.podcast-image {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.podcast-description {
+  margin-bottom: 20px;
+}
+
+.seasons-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.seasons-button.active {
+  background-color: #dc3545; /* Change color for active state */
+}
+
+.seasons-button:hover {
+  background-color: #0056b3;
+}
+
+.seasons {
+  margin-top: 20px;
+}
+
+.season {
+  margin-bottom: 20px;
+}
+
+.episode {
+  margin-bottom: 15px;
+}
+
+.audio-player {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.audio-player audio {
+  width: 100%;
+  height: 40px; /* Adjust height as needed */
+  outline: none;
+  background-color: #f0f0f0;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.audio-player audio::-webkit-media-controls-panel {
+  display: none; /* Hide default controls in WebKit */
+}
+
+.audio-player audio::controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: none;
+  font-family: Arial, sans-serif;
+}
+
+.audio-player audio::controls button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.audio-player audio::controls button:focus {
+  outline: none;
+}
+
+.audio-player audio::controls button:hover {
+  color: #333;
+}
+
+.audio-player audio::controls button.play-pause {
+  margin-right: 8px;
+}
+
+.audio-player audio::controls button.volume {
+  margin-left: 8px;
+}
+
+.audio-player audio::controls button.time-display {
+  flex: 1;
+  text-align: center;
+}
+
+.audio-player audio::controls button.volume-range {
+  width: 80px;
+}
+
+.audio-player audio::controls button.volume-range input[type="range"] {
+  width: 100%;
+}
+
+.audio-player audio::controls button.volume-range input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background-color: #333;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.audio-player audio::controls button.volume-range input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background-color: #333;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.podcast-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.podcast-details h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.podcast-details img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.podcast-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.season-image {
+  width: 200px; /* Adjust size as needed */
+  height: auto;
+  margin-right: 20px; /* Adjust spacing */
+}
+
+.season {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.season-title {
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.episodes {
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.episode {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.episode h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.audio-player {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.seasons-button {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.seasons-button:hover {
+  background-color: #0056b3;
+}
+
+.seasons-button.active {
+  background-color: #28a745;
+}
+
+.loading {
+  font-size: 24px;
+  text-align: center;
+  margin: 50px;
+}
+
+@media (max-width: 768px) {
+  .podcast-details {
+    padding: 10px;
   }
 
-  .podcast-details {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f8f8f8;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
-  
-  .podcast-details h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-  
-  .podcast-details img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
-  
-  .podcast-description {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-  
-  .season {
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #fff;
-  }
-  
-  .season-title {
-    cursor: pointer;
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .episodes {
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-  }
-  
-  .episode {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    background-color: #fff;
-  }
-  
   .episode h3 {
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-  
-  .audio-player {
-    width: 100%;
-    margin-bottom: 5px;
-  }
-  
-  .seasons-button {
-    padding: 8px 16px;
     font-size: 16px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
   }
-  
-  .seasons-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .seasons-button.active {
-    background-color: #28a745;
-  }
-  
-  .loading {
-    font-size: 24px;
-    text-align: center;
-    margin: 50px;
-  }
-  
-  @media (max-width: 768px) {
-    .podcast-details {
-      padding: 10px;
-    }
-  
-    .episode h3 {
-      font-size: 16px;
-    }
-  }
-  
-  
+}
+
+/* src/Seasons.css */
+
+/* Previous CSS */
+
+.back-link {
+  display: block;
+  margin-bottom: 10px;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+

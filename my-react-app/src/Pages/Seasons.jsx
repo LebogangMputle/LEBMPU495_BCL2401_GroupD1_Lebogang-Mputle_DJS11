@@ -1,5 +1,5 @@
 // src/Pages/Seasons.jsx
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './Seasons.css';
 
@@ -38,6 +38,7 @@ const Seasons = () => {
                 <h1>Loading...</h1>
             ) : (
                 <div className="podcast-details">
+                    <Link to={`/podcasts/`} className="back-link">Back to Podcast</Link>
                     <h1>{podcast.title}</h1>
                     <img src={podcast.image} alt={podcast.title} className="podcast-image" />
                     <p className="podcast-description">{podcast.description}</p>
@@ -48,6 +49,10 @@ const Seasons = () => {
                                 {season.title}
                             </h2>
                             {seasonsVisibility[season.seasonNumber] && (
+                                                                <div className="season-content">
+                                                                {season.seasons && ( // Render season-specific image if available
+                                                                    <img src={season.image} alt={`Season ${season.seasonNumber}`} className="season-image" />
+                                                                )}
                                 <div className="episodes">
                                     {season.episodes.map(episode => (
                                         <div key={episode.title} className="episode">
@@ -61,6 +66,7 @@ const Seasons = () => {
                                             <p>{episode.description}</p>
                                         </div>
                                     ))}
+                                    </div>
                                 </div>
                             )}
                         </div>
