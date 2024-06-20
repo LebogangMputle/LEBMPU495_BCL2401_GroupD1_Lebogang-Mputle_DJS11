@@ -16,8 +16,9 @@ const genreMapping = {
 
 const Podcasts = () => {
   const [podcasts, setPodcasts] = useState([]);
+  const [allPodcasts, setAllPodcasts] = useState([]); // To store all podcasts initially
   const [genres, setGenres] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState(''); // State for selected genre filter
+  const [selectedGenre, setSelectedGenre] = useState('');
 
   useEffect(() => {
     fetchPodcasts();
@@ -30,12 +31,12 @@ const Podcasts = () => {
       .then(data => {
         const sortedData = data.sort((a, b) => a.title.localeCompare(b.title));
         setPodcasts(sortedData);
+        setAllPodcasts(sortedData); // Store all podcasts
       })
       .catch(error => console.error('Error fetching podcasts:', error));
   };
 
   const fetchGenres = () => {
-    // Manually setting genres using genreMapping
     const genresArray = Object.keys(genreMapping).map(id => ({
       id,
       name: genreMapping[id]
@@ -45,16 +46,18 @@ const Podcasts = () => {
 
   const handleGenreChange = (event) => {
     setSelectedGenre(event.target.value);
-    if (event.target.value === '') {
-      fetchPodcasts(); // Fetch all podcasts if no genre selected
+    filterPodcastsByGenre(event.target.value);
+  };
+
+  const filterPodcastsByGenre = (genreId) => {
+    if (genreId === '') {
+      setPodcasts(allPodcasts); // Show all podcasts if no genre selected
     } else {
-      fetch(`https://podcast-api.netlify.app/genre/${event.target.value}`)
-        .then(response => response.json())
-        .then(data => {
-          const sortedData = data.sort((a, b) => a.title.localeCompare(b.title));
-          setPodcasts(sortedData);
-        })
-        .catch(error => console.error('Error fetching podcasts by genre:', error));
+      const filteredPodcasts = allPodcasts.filter(podcast =>
+        podcast.genres && podcast.genres.includes(parseInt(genreId))
+      );
+      const sortedData = filteredPodcasts.sort((a, b) => a.title.localeCompare(b.title));
+      setPodcasts(sortedData);
     }
   };
 
