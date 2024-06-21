@@ -10,7 +10,7 @@ const Favourites = () => {
     const fetchFavourites = () => {
       setLoading(true); // Set loading to true when fetching data
       const savedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
-      setFavourites(savedFavourites);
+      setFavourites(savedFavourites.map(podcast => ({ ...podcast, dateAdded: new Date() })));
       setLoading(false); // Set loading to false after data is fetched
     };
 
@@ -35,7 +35,8 @@ const Favourites = () => {
               <img src={podcast.image} alt={podcast.title} className="favourite-image" />
               <div className="favourite-info">
                 <h3>{podcast.title}</h3>
-                <button onClick={() => removeFavourite(podcast.id)} className='remove'>&#x2661;</button>
+                <p>Added on: {podcast.dateAdded.toLocaleString()}</p> {/* Display date and time */}
+                <button onClick={() => removeFavourite(podcast.id)}>Remove</button>
                 <Link to={`/seasons/${podcast.id}`} className="favourite-link">View Seasons</Link>
               </div>
             </div>
