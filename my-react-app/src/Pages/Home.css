@@ -1,0 +1,28 @@
+/* src/Pages/Home.css */
+.home-page {
+    text-align: center;
+  }
+  
+  .carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Adjust as needed */
+    overflow: hidden;
+  }
+  
+  .podcast-card {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+  }
+  
+  .podcast-image {
+    width: 200px; /* Adjust as needed */
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .podcast-info {
+    margin-top: 10px;
+  }
+  
