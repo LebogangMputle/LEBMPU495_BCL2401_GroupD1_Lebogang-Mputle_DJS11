@@ -35,7 +35,7 @@ const Favourites = () => {
               <img src={podcast.image} alt={podcast.title} className="favourite-image" />
               <div className="favourite-info">
                 <h3>{podcast.title}</h3>
-                <button onClick={() => removeFavourite(podcast.id)}>Remove</button>
+                <button onClick={() => removeFavourite(podcast.id)} className='remove'>&#x2661;</button>
                 <Link to={`/seasons/${podcast.id}`} className="favourite-link">View Seasons</Link>
               </div>
             </div>

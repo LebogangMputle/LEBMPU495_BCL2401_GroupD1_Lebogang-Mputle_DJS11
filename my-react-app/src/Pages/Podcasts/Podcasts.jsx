@@ -182,7 +182,7 @@ const Podcasts = () => {
                     e.preventDefault();
                     addToFavourites(podcast);
                   }}>
-                    ❤️
+                   &#x2661;
                   </button>
                 </div>
               </div>
