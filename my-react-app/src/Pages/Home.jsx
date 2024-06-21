@@ -33,7 +33,7 @@ const Home = () => {
   }, [podcasts]);
 
   const fetchPodcasts = () => {
-    fetch(`https://podcast-api.netlify.app/shows`)
+    fetch(`https://podcast-api.netlify.app/`)
       .then(response => response.json())
       .then(data => {
         const formattedData = data.map(podcast => ({
@@ -72,10 +72,8 @@ const Home = () => {
                 <img src={podcasts[currentIndex].image} alt={podcasts[currentIndex].title} className="podcast-image" />
                 <div className="podcast-info">
                   <h3>{podcasts[currentIndex].title}</h3>
-                  <p className="podcast-description">{podcasts[currentIndex].description}</p>
                   <p className="podcast-details">
-                    Genres: {podcasts[currentIndex].genres}<br />
-                    Seasons: {podcasts[currentIndex].seasons}<br />
+                    {podcasts[currentIndex].genres}<br />
                     Last Updated: {podcasts[currentIndex].updated}
                   </p>
                 </div>

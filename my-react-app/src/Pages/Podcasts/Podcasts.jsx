@@ -20,6 +20,8 @@ const Podcasts = () => {
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [loading, setLoading] = useState(true); // Loading state
+  const [sortDirection, setSortDirection] = useState('asc'); // State for sorting direction
 
   useEffect(() => {
     fetchPodcasts();
@@ -27,19 +29,26 @@ const Podcasts = () => {
   }, []);
 
   const fetchPodcasts = () => {
+    setLoading(true); // Set loading to true when fetching data
     fetch(`https://podcast-api.netlify.app/shows`)
       .then(response => response.json())
       .then(data => {
         const formattedData = data.map(podcast => ({
           ...podcast,
           genres: podcast.genres.map(genreId => genreMapping[genreId]).join(', '), // Map genre IDs to titles
-          updated: formatReadableDate(podcast.updated) // Format the date here
+          updated: formatReadableDate(podcast.updated), // Format the date here
+          seasons: podcast.seasons.length, // Number of seasons
+          isFavorite: false // Default value for isFavorite
         }));
-        const sortedData = formattedData.sort((a, b) => a.title.localeCompare(b.title));
+        const sortedData = sortPodcasts(formattedData, sortDirection);
         setPodcasts(sortedData);
         setAllPodcasts(sortedData); // Store all podcasts
+        setLoading(false); // Set loading to false after data is fetched
       })
-      .catch(error => console.error('Error fetching podcasts:', error));
+      .catch(error => {
+        console.error('Error fetching podcasts:', error);
+        setLoading(false); // Ensure loading state is set to false in case of error
+      });
   };
 
   const fetchGenres = () => {
@@ -78,11 +87,35 @@ const Podcasts = () => {
       );
     }
 
-    const sortedData = filteredData.sort((a, b) => a.title.localeCompare(b.title));
+    const sortedData = sortPodcasts(filteredData, sortDirection);
+    setPodcasts(sortedData);
+  };
+
+  const sortPodcasts = (data, direction) => {
+    const sortedData = [...data];
+    if (direction === 'asc') {
+      return sortedData.sort((a, b) => a.title.localeCompare(b.title));
+    } else {
+      return sortedData.sort((a, b) => b.title.localeCompare(a.title));
+    }
+  };
+
+  const toggleSortDirection = () => {
+    const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+    setSortDirection(newDirection);
+    const sortedData = sortPodcasts(podcasts, newDirection);
     setPodcasts(sortedData);
   };
 
   const addToFavourites = (podcast) => {
+    const updatedPodcasts = podcasts.map(p => {
+      if (p.id === podcast.id) {
+        return { ...p, isFavorite: !p.isFavorite };
+      }
+      return p;
+    });
+    setPodcasts(updatedPodcasts);
+
     const savedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
     const isAlreadyFavourite = savedFavourites.some(fav => fav.id === podcast.id);
 
@@ -90,7 +123,8 @@ const Podcasts = () => {
       const updatedFavourites = [...savedFavourites, podcast];
       localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
     } else {
-      alert('Podcast is already in favourites');
+      const updatedFavourites = savedFavourites.filter(fav => fav.id !== podcast.id);
+      localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
     }
   };
 
@@ -102,19 +136,16 @@ const Podcasts = () => {
 
   return (
     <div className="podcasts">
-      <h2>Podcasts</h2>
+      <h2 className='podcast-title'>Podcasts</h2>
       <div className="filter-section">
         <div className="sort-buttons">
-          <button onClick={() => setPodcasts(prevPodcasts => [...prevPodcasts].sort((a, b) => a.title.localeCompare(b.title)))}>
-            Sort A-Z
-          </button>
-          <button onClick={() => setPodcasts(prevPodcasts => [...prevPodcasts].sort((a, b) => b.title.localeCompare(a.title)))}>
-            Sort Z-A
+          <button onClick={toggleSortDirection}>
+            {sortDirection === 'asc' ? 'Sort A-Z' : 'Sort Z-A'}
           </button>
         </div>
         {genres.length > 0 && (
           <div className="genre-filter">
-            <label htmlFor="genreSelect">Filter by Genre:</label>
+            <label htmlFor="genreSelect"></label>
             <select id="genreSelect" value={selectedGenre} onChange={handleGenreChange}>
               <option value="">All Genres</option>
               {genres.map(genre => (
@@ -135,28 +166,30 @@ const Podcasts = () => {
       </div>
 
       <div className="podcasts-list">
-        {podcasts.length > 0 ? (
+        {loading ? (
+          <div className="loading-spinner">Loading...</div>
+        ) : podcasts.length > 0 ? (
           podcasts.map(podcast => (
             <Link key={podcast.id} to={`/seasons/${podcast.id}`} className="podcast-card">
               <div>
                 <img src={podcast.image} alt={podcast.title} className="podcast-image" />
                 <div className="podcast-info">
                   <h3>{podcast.title}</h3>
-                  <p className="podcast-seasons"> {podcast.genres}</p>
+                  <p className="podcast-genres">{podcast.genres}</p>
                   <p className="podcast-seasons">Seasons: {podcast.seasons}</p>
-                  <p className="podcast-seasons">Last Updated: {podcast.updated}</p>
-                  <button onClick={(e) => {
+                  <p className="podcast-updated">Last Updated: {podcast.updated}</p>
+                  <button className={podcast.isFavorite ? 'favorite-btn active' : 'favorite-btn'} onClick={(e) => {
                     e.preventDefault();
                     addToFavourites(podcast);
                   }}>
-                    Add to Favourites
+                    ❤️
                   </button>
                 </div>
               </div>
             </Link>
           ))
         ) : (
-          <p>No podcasts available</p>
+          <p>Loading podcasts...</p>
         )}
       </div>
     </div>
