@@ -32,7 +32,7 @@ const Podcasts = () => {
       .then(data => {
         const formattedData = data.map(podcast => ({
           ...podcast,
-          genres: podcast.genres.map(genres => genreMapping[genres]).join(', '), // Map genre IDs to titles
+          genres: podcast.genres.map(genreId => genreMapping[genreId]).join(', '), // Map genre IDs to titles
           updated: formatReadableDate(podcast.updated) // Format the date here
         }));
         const sortedData = formattedData.sort((a, b) => a.title.localeCompare(b.title));
@@ -51,21 +51,23 @@ const Podcasts = () => {
   };
 
   const handleGenreChange = (event) => {
-    setSelectedGenre(event.target.value);
-    filterPodcastsByGenre(event.target.value);
+    const genreId = event.target.value;
+    setSelectedGenre(genreId);
+    filterPodcasts(genreId, searchQuery);
   };
 
   const handleSearchInputChange = (event) => {
-    setSearchQuery(event.target.value);
-    filterPodcastsByGenre(selectedGenre, event.target.value);
+    const query = event.target.value;
+    setSearchQuery(query);
+    filterPodcasts(selectedGenre, query);
   };
 
-  const filterPodcastsByGenre = (genreId, query = '') => {
-    let filteredData = allPodcasts;
+  const filterPodcasts = (genreId, query) => {
+    let filteredData = [...allPodcasts]; // Create a copy of allPodcasts
 
     if (genreId !== '') {
       filteredData = filteredData.filter(podcast =>
-        podcast.genres && podcast.genres.includes(parseInt(genreId))
+        podcast.genres.toLowerCase().includes(genreMapping[genreId].toLowerCase())
       );
     }
 

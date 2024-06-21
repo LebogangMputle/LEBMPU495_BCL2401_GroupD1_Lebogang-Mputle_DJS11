@@ -1,7 +1,6 @@
-// src/Pages/Genres.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import './Genre.css';  // Import the CSS file for styling
+import './Genre.css'; // Import the CSS file for styling
 
 const Genres = () => {
     const [genres, setGenres] = useState([]);

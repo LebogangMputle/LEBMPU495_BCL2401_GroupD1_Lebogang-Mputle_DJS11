@@ -1,58 +1,60 @@
 .home-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    height: calc(100vh - 100px); /* Adjust according to your navbar and footer heights */
-  }
-  
-  .carousel {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .podcast-card {
-    display: flex;
-    width: 80%; /* Adjust width as needed */
-    max-width: 800px; /* Set maximum width */
-    border: 1px solid #ccc;
-    margin: 10px;
-    overflow: hidden; /* Ensure content doesn't overflow */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-  }
-  
-  .podcast-card:hover {
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  .podcast-image {
-    width: 40%; /* Adjust image width as needed */
-    height: auto;
-    object-fit: cover;
-  }
-  
-  .podcast-info {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  .podcast-info h3 {
-    margin: 0;
-    font-size: 1.5rem;
-  }
-  
-  .podcast-description {
-    margin: 10px 0;
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  .podcast-details {
-    font-size: 0.9rem;
-    color: #888;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: calc(10vh - 10px); /* Adjust according to your navbar and footer heights */
+  background-color: #f0f0f0;
+}
+
+.carousel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.podcast-card {
+  display: flex;
+  height: 400px;
+  width: 80%; /* Adjust width as needed */
+  max-width: 800px; /* Set maximum width */
+  border: 1px solid #ccc;
+  margin: 10px;
+  overflow: hidden; /* Ensure content doesn't overflow */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.podcast-card:hover {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.podcast-image {
+  width: 40%; /* Adjust image width as needed */
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px 0 0 8px
+}
+
+.podcast-info {
+  flex: 1;
+  padding: 20px;
+}
+
+.podcast-info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.podcast-description {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.podcast-details {
+  font-size: 0.9rem;
+  color: #888;
+}

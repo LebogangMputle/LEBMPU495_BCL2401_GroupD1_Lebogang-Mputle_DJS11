@@ -1,7 +1,6 @@
-// src/Pages/GenreDetails.jsx
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import './GenreDetails.css';  // Import the CSS file for styling
+import './GenreDetails.css'; // Import the CSS file for styling
 
 const GenreDetails = () => {
     const [podcasts, setPodcasts] = useState([]);
@@ -12,7 +11,7 @@ const GenreDetails = () => {
         fetch(`https://podcast-api.netlify.app/genre/${id}`)
             .then(response => response.json())
             .then(data => {
-                setPodcasts(data);
+                setPodcasts(data); // Assuming data is an array of podcasts for the given genre ID
                 setLoading(false);
             })
             .catch(error => console.error('Error fetching genre details:', error));
