@@ -18,18 +18,35 @@ const Episodes = () => {
             .catch(error => console.error('Error fetching episodes:', error));
     }, [seasonId]);
 
+    const addToFavourites = (episodes) => {
+        const savedFavourites = JSON.parse(localStorage.getItem('favouriteEpisode')) || [];
+        const newFavourite = { episodes, seasonId };
+        const isAlreadyFavourite = savedFavourites.some(
+            fav => fav.episodes.episodeNumber === episodes.episodeNumber && fav.seasonId === seasonId
+        );
+
+        if (!isAlreadyFavourite) {
+            const updatedFavourites = [...savedFavourites, newFavourite];
+            localStorage.setItem('favouriteEpisodes', JSON.stringify(updatedFavourites));
+            alert('Episode added to favourites!');
+        } else {
+            alert('Episode is already in favourites');
+        }
+    };
+
     return (
         <>
             {loading ? (
                 <h1>Loading...</h1>
             ) : (
                 <div className="episodes-details">
-                    <h1>Episodes for Season {episodes.seasonNumber}</h1>
+                    <h3>Episodes for Season {episodes.seasonNumber}</h3>
                     <div className="episodes-list">
-                        {episodes.episodes.map(episode => (
-                            <div key={episode.episodeNumber} className="episode">
-                                <h3>Episode {episode.episodeNumber}: {episode.title}</h3>
-                                <p>{episode.description}</p>
+                        {episodes.episodes.map(episodes => (
+                            <div key={episodes.episodeNumber} className="episodes">
+                                <h3>Episode {episodes.episodeNumber}: {episodes.title}</h3>
+                                <p>{episodes.description}</p>
+                                <button onClick={() => addToFavourites(episodes)}>Add to Favourites</button>
                             </div>
                         ))}
                     </div>

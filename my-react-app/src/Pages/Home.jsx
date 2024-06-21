@@ -18,6 +18,7 @@ const Home = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [allPodcasts, setAllPodcasts] = useState([]); // To store all podcasts initially
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     fetchPodcasts();
@@ -44,8 +45,12 @@ const Home = () => {
         const sortedData = formattedData.sort((a, b) => a.title.localeCompare(b.title));
         setPodcasts(sortedData);
         setAllPodcasts(sortedData); // Store all podcasts
+        setLoading(false); // Update loading state once data is fetched
       })
-      .catch(error => console.error('Error fetching podcasts:', error));
+      .catch(error => {
+        console.error('Error fetching podcasts:', error);
+        setLoading(false); // Ensure loading state is set to false in case of error
+      });
   };
 
   // Function to format date into human-readable format
@@ -57,24 +62,28 @@ const Home = () => {
   return (
     <div className="home-page">
       <h2>Recommended Podcasts</h2>
-      <div className="carousel">
-        {podcasts.length > 0 && (
-          <div className="podcast-card">
-            <Link to={`/seasons/${podcasts[currentIndex].id}`} className="podcast-link">
-              <img src={podcasts[currentIndex].image} alt={podcasts[currentIndex].title} className="podcast-image" />
-              <div className="podcast-info">
-                <h3>{podcasts[currentIndex].title}</h3>
-                <p className="podcast-description">{podcasts[currentIndex].description}</p>
-                <p className="podcast-details">
-                  Genres: {podcasts[currentIndex].genres}<br />
-                  Seasons: {podcasts[currentIndex].seasons}<br />
-                  Last Updated: {podcasts[currentIndex].updated}
-                </p>
-              </div>
-            </Link>
-          </div>
-        )}
-      </div>
+      {loading ? ( // Conditional rendering based on loading state
+        <p>Loading...</p>
+      ) : (
+        <div className="carousel">
+          {podcasts.length > 0 && (
+            <div className="podcast-card">
+              <Link to={`/seasons/${podcasts[currentIndex].id}`} className="podcast-link">
+                <img src={podcasts[currentIndex].image} alt={podcasts[currentIndex].title} className="podcast-image" />
+                <div className="podcast-info">
+                  <h3>{podcasts[currentIndex].title}</h3>
+                  <p className="podcast-description">{podcasts[currentIndex].description}</p>
+                  <p className="podcast-details">
+                    Genres: {podcasts[currentIndex].genres}<br />
+                    Seasons: {podcasts[currentIndex].seasons}<br />
+                    Last Updated: {podcasts[currentIndex].updated}
+                  </p>
+                </div>
+              </Link>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

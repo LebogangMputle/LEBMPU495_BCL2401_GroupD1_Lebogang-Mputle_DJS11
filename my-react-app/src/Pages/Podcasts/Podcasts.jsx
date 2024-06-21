@@ -142,7 +142,7 @@ const Podcasts = () => {
                 <img src={podcast.image} alt={podcast.title} className="podcast-image" />
                 <div className="podcast-info">
                   <h3>{podcast.title}</h3>
-                  <p className="podcast-seasons">Genres: {podcast.genres}</p>
+                  <p className="podcast-seasons"> {podcast.genres}</p>
                   <p className="podcast-seasons">Seasons: {podcast.seasons}</p>
                   <p className="podcast-seasons">Last Updated: {podcast.updated}</p>
                   <button onClick={(e) => {
