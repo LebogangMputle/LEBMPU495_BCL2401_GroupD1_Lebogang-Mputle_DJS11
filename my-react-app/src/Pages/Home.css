@@ -1,28 +1,58 @@
-/* src/Pages/Home.css */
 .home-page {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    height: calc(100vh - 100px); /* Adjust according to your navbar and footer heights */
   }
   
   .carousel {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px; /* Adjust as needed */
-    overflow: hidden;
   }
   
   .podcast-card {
-    transition: opacity 0.5s ease-in-out;
-    opacity: 1;
+    display: flex;
+    width: 80%; /* Adjust width as needed */
+    max-width: 800px; /* Set maximum width */
+    border: 1px solid #ccc;
+    margin: 10px;
+    overflow: hidden; /* Ensure content doesn't overflow */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .podcast-card:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   }
   
   .podcast-image {
-    width: 200px; /* Adjust as needed */
+    width: 40%; /* Adjust image width as needed */
     height: auto;
-    border-radius: 10px;
+    object-fit: cover;
   }
   
   .podcast-info {
-    margin-top: 10px;
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .podcast-info h3 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .podcast-description {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .podcast-details {
+    font-size: 0.9rem;
+    color: #888;
   }
   
