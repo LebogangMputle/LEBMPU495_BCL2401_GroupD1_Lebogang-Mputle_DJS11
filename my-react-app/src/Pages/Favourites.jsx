@@ -10,7 +10,14 @@ const Favourites = () => {
     const fetchFavourites = () => {
       setLoading(true); // Set loading to true when fetching data
       const savedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
-      setFavourites(savedFavourites.map(podcast => ({ ...podcast, dateAdded: new Date() })));
+      // Map saved favorites and add dateAdded property
+      const formattedFavourites = savedFavourites.map(podcast => ({
+        ...podcast,
+        dateAdded: new Date(podcast.dateAdded) // Ensure dateAdded is a Date object
+      }));
+      // Sort favourites by dateAdded in descending order (most recent first)
+      const sortedFavourites = formattedFavourites.sort((a, b) => b.dateAdded - a.dateAdded);
+      setFavourites(sortedFavourites);
       setLoading(false); // Set loading to false after data is fetched
     };
 
@@ -36,7 +43,7 @@ const Favourites = () => {
               <div className="favourite-info">
                 <h3>{podcast.title}</h3>
                 <p>Added on: {podcast.dateAdded.toLocaleString()}</p> {/* Display date and time */}
-                <button onClick={() => removeFavourite(podcast.id)}>Remove</button>
+                <button onClick={() => removeFavourite(podcast.id)} className='remove'> &#x2661;</button>
                 <Link to={`/seasons/${podcast.id}`} className="favourite-link">View Seasons</Link>
               </div>
             </div>
