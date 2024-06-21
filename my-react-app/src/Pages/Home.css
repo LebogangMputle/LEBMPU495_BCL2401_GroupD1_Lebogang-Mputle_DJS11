@@ -8,7 +8,7 @@
   padding: 20px;
   height: 100vh;
   background-color: #141414;
-  color: white;
+  color: #ffffff;
 }
 
 h2 {
@@ -44,6 +44,8 @@ h2 {
 
 .podcast-card:hover {
   transform: scale(1.05);
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .podcast-image {
@@ -51,15 +53,18 @@ h2 {
   height: auto;
   border-radius: 8px;
   margin-bottom: 20px;
+  object-fit: cover;
 }
 
 .podcast-info {
-  text-align: left;
+  text-align: center;
+  padding: 20px;
 }
 
 .podcast-info h3 {
+  margin: 10px 0;
   font-size: 1.5rem;
-  margin: 0;
+  color: #ff9800;
 }
 
 .podcast-description {
@@ -69,7 +74,7 @@ h2 {
 }
 
 .podcast-details {
-  font-size: 0.9rem;
+  font-size: 0.1rem;
   color: #aaa;
 }
 

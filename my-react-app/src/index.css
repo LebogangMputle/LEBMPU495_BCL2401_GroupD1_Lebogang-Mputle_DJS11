@@ -13,12 +13,19 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .navbar .links a {
   color: white;
   text-decoration: none;
   margin-left: 1rem;
+  transition: color 0.3s;
+}
+
+.navbar .links a:hover {
+  color: #ff9800;
 }
 
 .content {
@@ -45,6 +52,7 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
 }
 
 ul {
@@ -53,10 +61,16 @@ ul {
 }
 
 li {
-  background: #222;
+  background: #2a2a2a;
   margin: 0.5rem 0;
   padding: 0.5rem;
-  border: 1px solid #333;
+  border: 1px solid #444;
   border-radius: 4px;
   color: white;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+li:hover {
+  background: #333;
+  border-color: #666;
 }

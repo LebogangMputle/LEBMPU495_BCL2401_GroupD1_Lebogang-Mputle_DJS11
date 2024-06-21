@@ -28,3 +28,67 @@
 .podcast-info {
     margin-top: 10px;
 }
+
+/* Podcasts.css */
+.podcast-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #121212;
+    color: #ffffff;
+    min-height: 100vh;
+  }
+  
+  .podcast-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .podcast-header img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .podcast-header h2 {
+    margin: 10px 0;
+    color: #ff9800;
+  }
+  
+  .podcast-header p {
+    color: #cccccc;
+  }
+  
+  .episode-list {
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .episode-item {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .episode-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .episode-item h3 {
+    color: #ff9800;
+  }
+  
+  .episode-item p {
+    color: #cccccc;
+  }
+  
